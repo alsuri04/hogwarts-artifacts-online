@@ -3,7 +3,6 @@ package edu.tcu.cs.hogwartsartifactsonline.artifact;
 import java.io.Serializable;
 
 import edu.tcu.cs.hogwartsartifactsonline.wizard.Wizard;
-import edu.tcu.cs.hogwartsartifactsonline.wizard.dto.WizardDto;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;

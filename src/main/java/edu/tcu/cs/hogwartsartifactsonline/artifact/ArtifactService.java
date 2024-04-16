@@ -4,6 +4,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import edu.tcu.cs.hogwartsartifactsonline.artifact.utils.IdWorker;
+import edu.tcu.cs.hogwartsartifactsonline.system.exception.ObjectNotFoundException;
 import jakarta.transaction.Transactional;
 
 @Service
@@ -21,7 +22,7 @@ public class ArtifactService {
 
     public Artifact findById(String artifactId){
         return this.artifactRepository.findById(artifactId)
-            .orElseThrow(() -> new ArtifactNotFoundException(artifactId));
+        .orElseThrow(() -> new ObjectNotFoundException("artifact", artifactId));
     }
 
     public List<Artifact> findAll(){
@@ -42,7 +43,6 @@ public class ArtifactService {
                     Artifact updatedArtifact = this.artifactRepository.save(oldArtifact);
                     return updatedArtifact;
                 })
-                .orElseThrow(() -> new ArtifactNotFoundException(artifactId));
-    }
+                .orElseThrow(() -> new ObjectNotFoundException("artifact", artifactId));    }
     
 }

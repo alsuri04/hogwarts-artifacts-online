@@ -20,6 +20,7 @@ import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.*;
 
 import edu.tcu.cs.hogwartsartifactsonline.artifact.utils.IdWorker;
+import edu.tcu.cs.hogwartsartifactsonline.system.exception.ObjectNotFoundException;
 import edu.tcu.cs.hogwartsartifactsonline.wizard.Wizard;
 
 @ExtendWith(MockitoExtension.class)
@@ -108,7 +109,7 @@ class ArtifactServiceTest {
 
         // Then
         assertThat(thrown)
-            .isInstanceOf(ArtifactNotFoundException.class)
+            .isInstanceOf(ObjectNotFoundException.class)
             .hasMessage("Could not artifact with Id 1250808601744904192 :(");
         verify(this.artifactRepository, times(1)).findById("1250808601744904192");
     }
@@ -187,7 +188,7 @@ class ArtifactServiceTest {
         given(this.artifactRepository.findById("1250808601744904192")).willReturn(Optional.empty());
 
         // When
-        assertThrows(ArtifactNotFoundException.class, ()-> {
+        assertThrows(ObjectNotFoundException.class, ()-> {
             artifactService.update("1250808601744904192", update);
         });
 
