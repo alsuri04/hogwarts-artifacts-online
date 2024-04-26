@@ -59,7 +59,7 @@ public class ArtifactService {
                 .map(oldArtifact -> {
                     oldArtifact.setName(update.getName());
                     oldArtifact.setDescription(update.getDescription());
-                    oldArtifact.setImageUrl(update.getImageUrl());
+                    oldArtifact.setImageURL(update.getImageURL());
                     return this.artifactRepository.save(oldArtifact);
                 })
                 .orElseThrow(() -> new ObjectNotFoundException("artifact", artifactId));
@@ -119,7 +119,7 @@ public class ArtifactService {
             spec = spec.and(ArtifactSpecs.hasOwnerName(searchCriteria.get("ownerName")));
         }
 
-        return this.artifactRepository.findAll(spec, pageable);
+        return this.artifactRepository.findAll(pageable);
     }
 
 }
